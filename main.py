@@ -18,18 +18,18 @@ def main():
     print("--- End report ---")
 
 
-def sort_on(my_dict):
-    return sorted(my_dict.items(), key=lambda item: item[1], reverse=True)
+def sort_on(my_dict): # function to sort a dictionary by descending number
+    return sorted(my_dict.items(), key=lambda item: item[1], reverse=True) # select the dictionary, lambda = num, what to sort, descending order
 
 def count_characters(text):
     count = {} # define dictionary
     for i in text: # cycle through every character in the book
         c = i.lower() # lowercase character and save it in c
-        if c.isalpha():
-            if c in count:
-                count[c] += 1
+        if c.isalpha(): # checks if c is a letter
+            if c in count: # cycle through count as c
+                count[c] += 1 # +1 to c if c is in count
             else:
-                count[c] = 1
+                count[c] = 1 # sets c to 1 if not already in count
     return count # return the dictionary with all the counted characters
 
 def count_words(text): # count the words of a specific file
