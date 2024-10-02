@@ -7,17 +7,29 @@ def main():
     book_path = os.path.join(current_dir, "books", "frankenstein.txt") # Construct the path to the book file
     text = read_book(book_path) # call read_book function and store it in text
     wordcount = count_words(text) # call count_words function and store it in wordcount
-    #print(f"{wordcount} words found in the document") # printing number of words in the book
-    print(count_characters(text)) # call count_characters and print the result
+    character_count = count_characters(text)
+    print(f"--- Begin report of books/frankenstein.txt --- \n{wordcount} words found in the document\n") # printing number of words in the book
+    # Get sorted key-value pairs
+    sorted_keys = sort_on(character_count)
+
+    # Loop through sorted keys and print them
+    for key, value in sorted_keys:
+        print(f"The '{key}' character was found {value} times")
+    print("--- End report ---")
+
+
+def sort_on(my_dict):
+    return sorted(my_dict.items(), key=lambda item: item[1], reverse=True)
 
 def count_characters(text):
     count = {} # define dictionary
     for i in text: # cycle through every character in the book
         c = i.lower() # lowercase character and save it in c
-        if c in count:
-            count[c] += 1
-        else:
-            count[c] = 1
+        if c.isalpha():
+            if c in count:
+                count[c] += 1
+            else:
+                count[c] = 1
     return count # return the dictionary with all the counted characters
 
 def count_words(text): # count the words of a specific file
